@@ -1,0 +1,3 @@
+black
+isort
+zowe.core-for-zowe-sdk~=1.0.0.dev
