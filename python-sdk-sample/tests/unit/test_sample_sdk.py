@@ -1,14 +1,6 @@
 from unittest import TestCase, mock
 from zowe.core_for_zowe_sdk import ProfileManager
 
-import sys
-import os
-
-current_dir = os.path.dirname(os.path.abspath(__file__))
-
-# Add the parent directory of B to sys.path
-sys.path.append(os.path.join(current_dir, "../../src"))
-
 from main import SampleSdk
 
 class TestSampleSDK(TestCase):
