@@ -8,25 +8,26 @@ This repository contains sample code demonstrating Zowe client tools.
 
 ## Requirements
 
-The sample code has dependencies on the packages listed below:
-
+The sample SDK has the following requirements:
 ```
 black
 isort
 zowe.core-for-zowe-sdk~=1.0.0.dev
 ```
 
+You can clone the repository using `git`:
+
+```
+git clone https://github.com/zowe/zowe-client-samples.git
+```
+
 ## Quickstart
 
 After you install the package, import the class SampleSDK from modules
-Create a dictionary to handle communication with the plug-in:
+Below is a simple script of how to run the sample SDK:
 
 ```python
-    profile = {
-        "host": "example.com",
-        "port": 443,
-        "user": "<user>",
-        "password": "<password>"
-    }
-
+t = SampleSdk()
+result = t.create_post({"title": "foo", "body": "bar", "userId": 10})
+print(result)
 ```

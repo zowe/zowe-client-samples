@@ -23,7 +23,7 @@ class SampleSdk(SdkApi):
         Connection object
     """
 
-    def __init__(self, connection):
+    def __init__(self):
         """
         Construct a sample SDK object.
 
@@ -32,8 +32,7 @@ class SampleSdk(SdkApi):
         connection
             The connection object
         """
-        super().__init__(connection, "https://jsonplaceholder.typicode.com", logger_name=__name__)
-        self.request_endpoint = self.default_service_url
+        super().__init__({"host": "jsonplaceholder.typicode.com", "user": "fake", "password": "fake"}, "/", logger_name=__name__)
 
     def create_post(self, post):
         """
