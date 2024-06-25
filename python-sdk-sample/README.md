@@ -26,7 +26,7 @@ git clone https://github.com/zowe/zowe-client-samples.git
 ## Quickstart
 
 After you install the package, import the class SampleSDK from modules
-Below is a simple script of how to run the sample SDK:
+Below is a simple script of how to run the sample SDK, assuming the script file is located under the `python-sdk-sample` folder:
 
 ```python
 from src import SampleSdk 
