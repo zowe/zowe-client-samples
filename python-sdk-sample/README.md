@@ -29,6 +29,8 @@ After you install the package, import the class SampleSDK from modules
 Below is a simple script of how to run the sample SDK:
 
 ```python
+from src import SampleSdk 
+
 t = SampleSdk()
 result = t.create_post({"title": "foo", "body": "bar", "userId": 10})
 print(result)

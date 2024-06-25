@@ -1,13 +1,11 @@
-from unittest import TestCase, mock
-import unittest
-from zowe.core_for_zowe_sdk import ProfileManager # type: ignore
+from unittest import TestCase
 
 import sys
 import os
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.join(current_dir, "../../src"))
-from main import SampleSdk
+sys.path.append(os.path.join(current_dir, "../.."))
+from src import SampleSdk
 
 class TestSampleSDK(TestCase):
 
