@@ -2,3 +2,4 @@ black
 isort
 zowe.core-for-zowe-sdk~=1.0.0.dev
 pytest==7.1.2
+-e .
