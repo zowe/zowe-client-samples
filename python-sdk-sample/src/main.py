@@ -50,7 +50,7 @@ class SampleSdk(SdkApi):
         """
         custom_args = self._create_custom_request_arguments()
         custom_args["json"] = post
-        custom_args["url"] = f"{self.request_endpoint}/posts"
+        custom_args["url"] = f"{self._request_endpoint}/posts"
         response_json = self.request_handler.perform_request("POST", custom_args, expected_code=[201])
         return response_json
 
@@ -72,7 +72,7 @@ class SampleSdk(SdkApi):
         """
         custom_args = self._create_custom_request_arguments()
         custom_args["json"] = post
-        custom_args["url"] = f"{self.request_endpoint}/posts/{id}"
+        custom_args["url"] = f"{self._request_endpoint}/posts/{id}"
         response_json = self.request_handler.perform_request("PUT", custom_args, expected_code=[200])
         return response_json
 
@@ -91,7 +91,7 @@ class SampleSdk(SdkApi):
             A JSON with the contents of the post
         """
         custom_args = self._create_custom_request_arguments()
-        custom_args["url"] = f"{self.request_endpoint}/posts/{id}"
+        custom_args["url"] = f"{self._request_endpoint}/posts/{id}"
         response_json = self.request_handler.perform_request("GET", custom_args, expected_code=[200])
         return response_json
 
@@ -105,7 +105,7 @@ class SampleSdk(SdkApi):
             A list object of all posts (JSON objects).
         """
         custom_args = self._create_custom_request_arguments()
-        custom_args["url"] = f"{self.request_endpoint}/posts"
+        custom_args["url"] = f"{self._request_endpoint}/posts"
         response_json = self.request_handler.perform_request("GET", custom_args, expected_code=[200])
         self.logger.info("Listed all posts")
         return response_json
@@ -124,6 +124,6 @@ class SampleSdk(SdkApi):
         json - A empty JSON
         """
         custom_args = self._create_custom_request_arguments()
-        custom_args["url"] = f"{self.request_endpoint}/posts/{id}"
+        custom_args["url"] = f"{self._request_endpoint}/posts/{id}"
         response_json = self.request_handler.perform_request("DELETE", custom_args, expected_code=[200])
         return response_json
