@@ -1,5 +1,12 @@
+[project]
+name = "org_sample-for-zowe-sdk"
+version = "0.0.1"
+
 [tool.black]
 line-length = 120
 
 [tool.isort]
 profile = "black"
+
+[tool.setuptools.package-dir]
+"org.sample_for_zowe_sdk" = "src"
