@@ -18,7 +18,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        sample: ['menu-item-sample', 'tree-view-sample', 'uss-profile-sample', 'vue-webview-sample']
+        sample:
+          - menu-item-sample
+          - tree-view-sample
+          - uss-profile-sample
+          - vue-webview-sample
 
     steps:
       - name: Checkout
