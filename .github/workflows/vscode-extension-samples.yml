@@ -13,12 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: vscode-extension-samples/${{ matrix.sample }}-sample
+        working-directory: vscode-extension-samples/${{ matrix.sample }}
 
     strategy:
       fail-fast: false
       matrix:
-        sample: ['menu-item', 'tree-view', 'uss-profile', 'vue-webview']
+        sample: ['menu-item-sample', 'tree-view-sample', 'uss-profile-sample', 'vue-webview-sample']
 
     steps:
       - name: Checkout
@@ -42,4 +42,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.sample }}-sample
-          path: vscode-extension-samples/${{ matrix.sample }}-sample/*.vsix
+          path: vscode-extension-samples/${{ matrix.sample }}/*.vsix

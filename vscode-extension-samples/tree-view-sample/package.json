@@ -43,7 +43,7 @@
     "Zowe.vscode-extension-for-zowe"
   ],
   "scripts": {
-    "vscode:prepublish": "pnpm run compile",
+    "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "lint": "eslint \"src/**/*.ts\"",
     "watch": "tsc -watch -p ./"

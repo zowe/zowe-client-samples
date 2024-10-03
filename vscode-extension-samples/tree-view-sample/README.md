@@ -9,6 +9,6 @@ In "extension.ts" the tree view is configured to use [`ProfilesTreeProvider`](/s
 ## Running the sample
 
 - Open this sample in VS Code
-- `pnpm i`
-- `pnpm run compile`
+- `npm install`
+- `npm run compile`
 - `F5` to start debugging
