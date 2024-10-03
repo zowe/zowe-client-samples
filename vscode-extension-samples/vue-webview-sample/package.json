@@ -2,8 +2,9 @@
   "name": "vue-webview-sample",
   "displayName": "vue-webview-sample",
   "description": "Sample VSCode extension leveraging ZE API WebView class and a Vite-powered Vue demo",
-  "private": true,
   "version": "0.0.1",
+  "publisher": "Zowe",
+  "repository": "https://github.com/zowe/zowe-client-samples/tree/main/vscode-extension-samples",
   "engines": {
     "vscode": "^1.79.0"
   },
