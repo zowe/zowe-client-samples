@@ -41,5 +41,5 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.sample }}-sample
+          name: ${{ matrix.sample }}
           path: vscode-extension-samples/${{ matrix.sample }}/*.vsix
