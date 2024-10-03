@@ -45,14 +45,13 @@
     "lint": "eslint \"src/**/*.ts\"",
     "watch": "tsc -watch -p ./"
   },
-  "dependencies": {
-    "@zowe/zowe-explorer-api": "^3.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^18.19.14",
     "@types/vscode": "^1.53.2",
     "@typescript-eslint/eslint-plugin": "^5.42.0",
     "@typescript-eslint/parser": "^5.42.0",
+    "@zowe/zowe-explorer-api": "^3.0.0",
     "eslint": "^8.26.0",
     "typescript": "^5.1.3"
   }
