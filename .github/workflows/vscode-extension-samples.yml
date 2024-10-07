@@ -1,0 +1,49 @@
+name: VSCode Extension Samples CI
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/vscode-extension-samples.yml
+      - vscode-extension-samples/**
+  schedule:
+    - cron: '0 10 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: vscode-extension-samples/${{ matrix.sample }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        sample:
+          - menu-item-sample
+          - tree-view-sample
+          - uss-profile-sample
+          - vue-webview-sample
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js LTS
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Source
+        run: npm run compile
+
+      - name: Package VSIX
+        run: npx vsce package
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.sample }}
+          path: vscode-extension-samples/${{ matrix.sample }}/*.vsix
