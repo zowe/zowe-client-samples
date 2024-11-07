@@ -1,0 +1,35 @@
+{
+  "name": "local-storage-sample",
+  "displayName": "local-storage-sample",
+  "description": "Local storage sample for Zowe Explorer",
+  "version": "0.0.1",
+  "publisher": "Zowe",
+  "repository": "https://github.com/zowe/zowe-client-samples/tree/main/vscode-extension-samples",
+  "engines": {
+    "vscode": "^1.79.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "extensionDependencies": [
+    "Zowe.vscode-extension-for-zowe"
+  ],
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "lint": "eslint \"src/**/*.ts\"",
+    "watch": "tsc -watch -p ./"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^18.19.14",
+    "@types/vscode": "^1.53.2",
+    "@typescript-eslint/eslint-plugin": "^5.42.0",
+    "@typescript-eslint/parser": "^5.42.0",
+    "@zowe/zowe-explorer-api": "^3.0.0",
+    "eslint": "^8.26.0",
+    "typescript": "^5.1.3"
+  }
+}
