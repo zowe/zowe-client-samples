@@ -23,6 +23,7 @@ jobs:
           - tree-view-sample
           - uss-profile-sample
           - vue-webview-sample
+          - local-storage-sample
 
     steps:
       - name: Checkout
