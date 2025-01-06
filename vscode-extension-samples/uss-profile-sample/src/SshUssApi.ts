@@ -34,9 +34,10 @@ export class SshUssApi implements MainframeInteraction.IUss {
             const response = [];
             if ((await client.stat(ussFilePath)).isDirectory) {
                 for (const fileInfo of await client.list(ussFilePath)) {
+                    const permString = Object.values(fileInfo.rights).reduce((all, perm) => all.concat(perm), fileInfo.type);
                     response.push({
                         name: fileInfo.name,
-                        mode: fileInfo.type + fileInfo.owner + fileInfo.group + fileInfo.rights.other,
+                        mode: permString,
                         size: fileInfo.size,
                         uid: fileInfo.owner,
                         gid: fileInfo.group,
@@ -72,7 +73,7 @@ export class SshUssApi implements MainframeInteraction.IUss {
         });
     }
 
-    public async putContent(inputFilePath: string, ussFilePath: string): Promise<zosfiles.IZosFilesResponse> {
+    public async putContent(inputFilePath: string, ussFilePath: string, _options?: zosfiles.IUploadOptions): Promise<zosfiles.IZosFilesResponse> {
         return this.withClient(this.getSession(), async (client) => {
             const response = await client.fastPut(inputFilePath, ussFilePath);
             return this.buildZosFilesResponse(response);
