@@ -32,15 +32,18 @@ export class SshUssApi implements MainframeInteraction.IUss {
     public async fileList(ussFilePath: string): Promise<zosfiles.IZosFilesResponse> {
         return this.withClient(this.getSession(), async (client) => {
             const response = [];
-            for (const fileInfo of await client.list(ussFilePath)) {
-                response.push({
-                    name: fileInfo.name,
-                    mode: fileInfo.type + fileInfo.owner + fileInfo.group + fileInfo.rights.other,
-                    size: fileInfo.size,
-                    uid: fileInfo.owner,
-                    gid: fileInfo.group,
-                    mtime: fileInfo.modifyTime.toString(),
-                });
+            if ((await client.stat(ussFilePath)).isDirectory) {
+                for (const fileInfo of await client.list(ussFilePath)) {
+                    const permString = Object.values(fileInfo.rights).reduce((all, perm) => all.concat(perm), fileInfo.type);
+                    response.push({
+                        name: fileInfo.name,
+                        mode: permString,
+                        size: fileInfo.size,
+                        uid: fileInfo.owner,
+                        gid: fileInfo.group,
+                        mtime: fileInfo.modifyTime,
+                    });
+                }
             }
             return this.buildZosFilesResponse({ items: response });
         });
@@ -50,12 +53,16 @@ export class SshUssApi implements MainframeInteraction.IUss {
         return Promise.resolve(false);
     }
 
-    public async getContents(ussFilePath: string, options: zosfiles.IDownloadOptions): Promise<zosfiles.IZosFilesResponse> {
+    public async getContents(ussFilePath: string, options: zosfiles.IDownloadSingleOptions): Promise<zosfiles.IZosFilesResponse> {
         return this.withClient(this.getSession(), async (client) => {
-            const localPath = options.file as string;
-            imperative.IO.createDirsSyncFromFilePath(localPath);
-            const response = await client.fastGet(ussFilePath, localPath);
-            return this.buildZosFilesResponse(response);
+            if (options.file != null) {
+                imperative.IO.createDirsSyncFromFilePath(options.file);
+                await client.fastGet(ussFilePath, options.file);
+            } else if (options.stream != null) {
+                options.stream.write(await client.get(ussFilePath));
+                options.stream.end();
+            }
+            return this.buildZosFilesResponse({ etag: ussFilePath });
         });
     }
 
@@ -66,7 +73,7 @@ export class SshUssApi implements MainframeInteraction.IUss {
         });
     }
 
-    public async putContent(inputFilePath: string, ussFilePath: string): Promise<zosfiles.IZosFilesResponse> {
+    public async putContent(inputFilePath: string, ussFilePath: string, _options?: zosfiles.IUploadOptions): Promise<zosfiles.IZosFilesResponse> {
         return this.withClient(this.getSession(), async (client) => {
             const response = await client.fastPut(inputFilePath, ussFilePath);
             return this.buildZosFilesResponse(response);
@@ -119,6 +126,9 @@ export class SshUssApi implements MainframeInteraction.IUss {
                 password: session.ISession.password,
             });
             return await callback(client);
+        } catch (err) {
+            console.error(err);
+            return Promise.reject<T>(err);
         } finally {
             await client.end();
         }
