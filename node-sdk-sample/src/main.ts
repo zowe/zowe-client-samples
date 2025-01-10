@@ -8,7 +8,7 @@
 * Copyright Contributors to the Zowe Project.
 */
 
-import { AbstractSession, RestClient, Logger } from "@zowe/imperative";
+import { AbstractSession, RestClient } from "@zowe/imperative";
 
 interface IPost {
     userId: number;
