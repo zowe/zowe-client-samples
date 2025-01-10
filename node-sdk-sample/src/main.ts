@@ -1,80 +1,51 @@
-/**
- * This program and the accompanying materials are made available and may be used, at your option, under either:
- * Eclipse Public License v2.0, available at https://www.eclipse.org/legal/epl-v20.html, OR
- * Apache License, version 2.0, available at http://www.apache.org/licenses/LICENSE-2.0
- *
- * SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
- *
- * Copyright Contributors to the Zowe Project.
- */
+/*
+* This program and the accompanying materials are made available under the terms of the
+* Eclipse Public License v2.0 which accompanies this distribution, and is available at
+* https://www.eclipse.org/legal/epl-v20.html
+*
+* SPDX-License-Identifier: EPL-2.0
+*
+* Copyright Contributors to the Zowe Project.
+*/
 
-import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
+import { AbstractSession, RestClient, Logger } from "@zowe/imperative";
 
-export interface Post {
+interface IPost {
+    userId: number;
+    id?: number;
     title: string;
     body: string;
-    userId: number;
 }
 
 export class SampleSdk {
-    private requestHandler: AxiosInstance;
-    private logger: Console;
-    private readonly requestEndpoint: string = "/";
+    public static readonly POSTS_URI = "/posts";
 
-    constructor() {
-        this.requestHandler = axios.create({
-            baseURL: "https://jsonplaceholder.typicode.com",
-            auth: {
-                username: "fake",
-                password: "fake",
-            },
-        });
-        this.logger = console;
+    private session: AbstractSession;
+
+    constructor(session: AbstractSession) {
+        this.session = session;
     }
 
-    private createCustomRequestArguments(): AxiosRequestConfig {
-        return {
-            headers: {
-                "Content-Type": "application/json",
-            },
-        };
+    public async listPosts(): Promise<IPost[]> {
+        return RestClient.getExpectJSON<IPost[]>(this.session, SampleSdk.POSTS_URI);
     }
 
-    async createPost(post: Post): Promise<any> {
-        const customArgs = this.createCustomRequestArguments();
-        customArgs.data = post;
-        customArgs.url = `${this.requestEndpoint}posts`;
-        const response = await this.requestHandler.post(customArgs.url, customArgs.data, customArgs);
-        return response.data;
+    public async getPost(id: number): Promise<IPost> {
+        const resource = `${SampleSdk.POSTS_URI}/${id}`;
+        return RestClient.getExpectJSON<IPost>(this.session, resource);
     }
 
-    async updatePost(id: number, post: Post): Promise<any> {
-        const customArgs = this.createCustomRequestArguments();
-        customArgs.data = post;
-        customArgs.url = `${this.requestEndpoint}posts/${id}`;
-        const response = await this.requestHandler.put(customArgs.url, customArgs.data, customArgs);
-        return response.data;
+    public async createPost(post: any): Promise<IPost> {
+        return RestClient.postExpectJSON<IPost>(this.session, SampleSdk.POSTS_URI, post);
     }
 
-    async getPost(id: number): Promise<any> {
-        const customArgs = this.createCustomRequestArguments();
-        customArgs.url = `${this.requestEndpoint}posts/${id}`;
-        const response = await this.requestHandler.get(customArgs.url, customArgs);
-        return response.data;
+    public async updatePost(id: number, post: any): Promise<IPost> {
+        const resource = `${SampleSdk.POSTS_URI}/${id}`;
+        return RestClient.putExpectJSON<IPost>(this.session, resource, post, "");
     }
 
-    async listPosts(): Promise<any[]> {
-        const customArgs = this.createCustomRequestArguments();
-        customArgs.url = `${this.requestEndpoint}posts`;
-        const response = await this.requestHandler.get(customArgs.url, customArgs);
-        this.logger.info("Listed all posts");
-        return response.data;
-    }
-
-    async deletePost(id: number): Promise<any> {
-        const customArgs = this.createCustomRequestArguments();
-        customArgs.url = `${this.requestEndpoint}posts/${id}`;
-        const response = await this.requestHandler.delete(customArgs.url, customArgs);
-        return response.data;
+    public async deletePost(id: number): Promise<unknown> {
+        const resource = `${SampleSdk.POSTS_URI}/${id}`;
+        return RestClient.deleteExpectJSON(this.session, resource);
     }
 }

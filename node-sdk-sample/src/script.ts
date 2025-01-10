@@ -1,30 +1,46 @@
+/*
+* This program tests the functionality of SampleSdk by interacting with the
+* JSONPlaceholder REST API.
+*/
+
+import { Session } from "@zowe/imperative";
 import { SampleSdk } from "./main";
 
 (async () => {
-    const sdk = new SampleSdk();
+    // Create a session for the RestClient
+    const session: Session = new Session({
+        hostname: "jsonplaceholder.typicode.com",
+
+    });
+
+    const sdk = new SampleSdk(session);
 
     try {
-        // console.log("=== Creating a Post ===");
-        // const createdPost = await sdk.createPost({ title: "foo", body: "bar", userId: 10 });
-        // console.log("Created Post:", createdPost);
-
+        // List all posts
         console.log("\n=== Listing All Posts ===");
         const allPosts = await sdk.listPosts();
-        console.log("All Posts:", allPosts);
+        console.log("All Posts:", allPosts.slice(0, 5));
 
-        // const postId = createdPost.id;
+        // Create a new post
+        console.log("\n=== Creating a Post ===");
+        const newPost = { title: "Test Post", body: "This is a test post.", userId: 1 };
+        const createdPost = await sdk.createPost(newPost);
+        console.log("Created Post:", createdPost);
 
-        // console.log("\n=== Retrieving a Single Post ===");
-        // const singlePost = await sdk.getPost(postId);
-        // console.log("Single Post:", singlePost);
+        // Get the newly created post by ID
+        console.log("\n=== Retrieving a Single Post ===");
+        const singlePost = await sdk.getPost(1);
+        console.log("Single Post:", singlePost);
 
-        // console.log("\n=== Updating a Post ===");
-        // const updatedPost = await sdk.updatePost(postId, { title: "updated foo", body: "updated bar", userId: 10 });
-        // console.log("Updated Post:", updatedPost);
+        // Update the created post
+        console.log("\n=== Updating the Post ===");
+        const updatedPost = await sdk.updatePost(1, { title: "Updated Title" });
+        console.log("Updated Post:", updatedPost);
 
-        // console.log("\n=== Deleting a Post ===");
-        // const deletedPost = await sdk.deletePost(postId);
-        // console.log("Deleted Post Response:", deletedPost);
+        // Delete the created post
+        console.log("\n=== Deleting the Post ===");
+        const deleteResponse = await sdk.deletePost(1);
+        console.log("Deleted Post Response:", deleteResponse);
 
     } catch (error) {
         console.error("An error occurred:", error);
