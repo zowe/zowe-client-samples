@@ -9,19 +9,18 @@
   "scripts": {
     "test": "jest",
     "lint": "eslint src",
-    "build": "tsc"
+    "build": "tsc",
+    "watch": "tsc -w"
   },
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "author": "Zowe",
+  "license": "EPL-2.0",
+  "description": "Zowe Client Node SDK Sample",
   "dependencies": {
-    "ts-node": "^10.9.2"
   },
   "devDependencies": {
     "@types/jest": "^29.5.14",
     "@typescript-eslint/eslint-plugin": "^8.19.1",
     "@typescript-eslint/parser": "^8.19.1",
-    "@zowe/core-for-zowe-sdk": "^8.10.4",
     "@zowe/imperative": "^8.10.4",
     "eslint": "^8.57.1",
     "jest": "^29.7.0",
@@ -30,7 +29,6 @@
     "typescript": "^5.7.3"
   },
   "peerDependencies": {
-    "@zowe/core-for-zowe-sdk": "^8.0.0",
     "@zowe/imperative": "^8.0.0"
   }
 }
