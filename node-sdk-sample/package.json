@@ -12,8 +12,6 @@
   "author": "Zowe",
   "license": "EPL-2.0",
   "description": "Zowe Client Node SDK Sample",
-  "dependencies": {
-  },
   "devDependencies": {
     "@types/jest": "^29.5.14",
     "@typescript-eslint/eslint-plugin": "^8.19.1",

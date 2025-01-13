@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "target": "ES6",
+      "module": "CommonJS",
+      "moduleResolution": "node",
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "strict": true,
+      "outDir": "./lib"
+    },
+    "include": [
+      "src/**/*.ts",
+      "tests/**/*.ts"
+    ]
+  }

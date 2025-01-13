@@ -11,6 +11,7 @@ git clone https://github.com/zowe/zowe-client-samples.git
 You can install the requirements in a virtual environment with following commands:
 
 ```shell
+cd node-sdk-sample
 npm install
 npm run build
 ```
@@ -34,4 +35,20 @@ import { SampleSdk } from "./main";
     console.log(await sdk.getPost(1));
 })();
 
+```
+
+## Running The Sample
+
+    - `/zowe-client-sample/node-sdk-sample` should be the working directory
+
+```shell
+npx tsx src/script.ts
+```
+
+## Running Integration and Unit Tests
+
+    - `/zowe-client-sample/node-sdk-sample` should be the working directory
+
+```shell
+npx jest tests/
 ```
