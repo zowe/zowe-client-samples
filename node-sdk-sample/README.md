@@ -2,17 +2,17 @@
 
 ## Requirements
 
+You can clone the repository using `git`:
+
+```
+git clone https://github.com/zowe/zowe-client-samples.git
+```
+
 You can install the requirements in a virtual environment with following commands:
 
 ```shell
 npm install
 npm run build
-```
-
-You can clone the repository using `git`:
-
-```
-git clone https://github.com/zowe/zowe-client-samples.git
 ```
 
 ## Quickstart

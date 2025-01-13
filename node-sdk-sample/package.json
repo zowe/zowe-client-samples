@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "main": "index.js",
   "type": "commonjs",
-  "directories": {
-    "test": "tests"
-  },
   "scripts": {
     "test": "jest",
     "lint": "eslint src",
