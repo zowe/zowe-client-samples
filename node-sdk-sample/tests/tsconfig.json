@@ -9,6 +9,6 @@
     "noEmit": true
   },
   "exclude": [
-    "**/*.test.ts"
+    "*.test.ts"
   ]
 }
