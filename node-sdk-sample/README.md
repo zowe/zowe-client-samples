@@ -18,7 +18,7 @@ npm run build
 
 ## Quickstart
 
-After you install the package, import the class SampleSDK from modules.
+After you install the package, import the class SampleSdk from modules.
 
 Below is a simple script of how to run the sample SDK, assuming the script file is located under the `node-sdk-sample/src` folder:
 
@@ -39,7 +39,7 @@ import { SampleSdk } from "./main";
 
 ## Running The Sample
 
-~/zowe-client-sample/node-sdk-sample should be the working directory
+With `~/zowe-client-sample/node-sdk-sample` as the working directory, issue the following command to run the sample:
 
 ```shell
 npx tsx src/script.ts
@@ -47,7 +47,7 @@ npx tsx src/script.ts
 
 ## Running Integration and Unit Tests
 
-~/zowe-client-sample/node-sdk-sample should be the working directory
+With `~/zowe-client-sample/node-sdk-sample` as the working directory, issue the following command to run the sample:
 
 ```shell
 npx jest tests/
