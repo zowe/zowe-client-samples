@@ -39,7 +39,7 @@ import { SampleSdk } from "./main";
 
 ## Running The Sample
 
-    - `/zowe-client-sample/node-sdk-sample` should be the working directory
+    - /zowe-client-sample/node-sdk-sample should be the working directory
 
 ```shell
 npx tsx src/script.ts
@@ -47,7 +47,7 @@ npx tsx src/script.ts
 
 ## Running Integration and Unit Tests
 
-    - `/zowe-client-sample/node-sdk-sample` should be the working directory
+    - /zowe-client-sample/node-sdk-sample should be the working directory
 
 ```shell
 npx jest tests/
