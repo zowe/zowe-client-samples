@@ -10,7 +10,6 @@ import { SampleSdk } from "./main";
     // Create a session for the RestClient
     const session: Session = new Session({
         hostname: "jsonplaceholder.typicode.com",
-
     });
 
     const sdk = new SampleSdk(session);

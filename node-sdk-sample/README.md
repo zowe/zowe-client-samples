@@ -42,7 +42,7 @@ import { SampleSdk } from "./main";
 With `~/zowe-client-sample/node-sdk-sample` as the working directory, issue the following command to run the sample:
 
 ```shell
-npx tsx src/script.ts
+npm start
 ```
 
 ## Running Integration and Unit Tests

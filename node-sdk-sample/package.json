@@ -1,13 +1,14 @@
 {
   "name": "sdk-sample",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "script.js",
   "type": "commonjs",
   "scripts": {
     "test": "jest",
     "lint": "eslint src",
     "build": "tsc",
-    "watch": "tsc -w"
+    "watch": "tsc -w",
+    "start": "npm run build && node lib/script.js"
   },
   "author": "Zowe",
   "license": "EPL-2.0",
@@ -20,7 +21,6 @@
     "eslint": "^8.57.1",
     "jest": "^29.7.0",
     "ts-jest": "^29.2.5",
-    "tsx": "^4.19.2",
     "typescript": "^5.7.3"
   },
   "peerDependencies": {
