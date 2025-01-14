@@ -47,7 +47,7 @@ npx tsx src/script.ts
 
 ## Running Integration and Unit Tests
 
-With `~/zowe-client-sample/node-sdk-sample` as the working directory, issue the following command to run the sample:
+With `~/zowe-client-sample/node-sdk-sample` as the working directory, issue the following command to run integration and unit tests:
 
 ```shell
 npx jest tests/
