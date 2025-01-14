@@ -54,7 +54,7 @@ describe("SampleSdk", () => {
 
         const result = await sdk.createPost(newPost);
         expect(result).toEqual(mockCreatedPost);
-        expect(mockedRestClient.postExpectJSON).toHaveBeenCalledWith(mockSession, SampleSdk.POSTS_URI, newPost);
+        expect(mockedRestClient.postExpectJSON).toHaveBeenCalledWith(mockSession, SampleSdk.POSTS_URI, [], JSON.stringify(newPost));
     });
 
     it("updatePost should update a post and return the updated post", async () => {
@@ -67,8 +67,8 @@ describe("SampleSdk", () => {
         expect(mockedRestClient.putExpectJSON).toHaveBeenCalledWith(
             mockSession,
             `${SampleSdk.POSTS_URI}/1`,
-            updatedPost,
-            ""
+            [],
+            JSON.stringify(updatedPost)
         );
     });
 

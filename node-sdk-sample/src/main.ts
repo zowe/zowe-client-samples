@@ -10,11 +10,11 @@
 
 import { AbstractSession, RestClient } from "@zowe/imperative";
 
-interface IPost {
-    userId: number;
+export interface IPost {
+    userId?: number;
     id?: number;
-    title: string;
-    body: string;
+    title?: string;
+    body?: string;
 }
 
 export class SampleSdk {
@@ -35,13 +35,13 @@ export class SampleSdk {
         return RestClient.getExpectJSON<IPost>(this.session, resource);
     }
 
-    public async createPost(post: any): Promise<IPost> {
-        return RestClient.postExpectJSON<IPost>(this.session, SampleSdk.POSTS_URI, post);
+    public async createPost(post: IPost): Promise<IPost> {
+        return RestClient.postExpectJSON<IPost>(this.session, SampleSdk.POSTS_URI,[], JSON.stringify(post));
     }
 
-    public async updatePost(id: number, post: any): Promise<IPost> {
+    public async updatePost(id: number, post: IPost): Promise<IPost> {
         const resource = `${SampleSdk.POSTS_URI}/${id}`;
-        return RestClient.putExpectJSON<IPost>(this.session, resource, post, "");
+        return RestClient.putExpectJSON<IPost>(this.session, resource, [], JSON.stringify(post));
     }
 
     public async deletePost(id: number): Promise<unknown> {

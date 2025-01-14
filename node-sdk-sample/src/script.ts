@@ -4,7 +4,7 @@
 */
 
 import { Session } from "@zowe/imperative";
-import { SampleSdk } from "./main";
+import { SampleSdk, IPost } from "./main";
 
 (async () => {
     // Create a session for the RestClient
@@ -22,7 +22,7 @@ import { SampleSdk } from "./main";
 
         // Create a new post
         console.log("\n=== Creating a Post ===");
-        const newPost = { title: "Test Post", body: "This is a test post.", userId: 1 };
+        const newPost: IPost = { title: "Test Post", body: "This is a test post.", userId: 1 };
         const createdPost = await sdk.createPost(newPost);
         console.log("Created Post:", createdPost);
 
@@ -33,7 +33,7 @@ import { SampleSdk } from "./main";
 
         // Update the created post
         console.log("\n=== Updating the Post ===");
-        const updatedPost = await sdk.updatePost(1, { title: "Updated Title" });
+        const updatedPost: IPost = await sdk.updatePost(1, { title: "Updated Title" });
         console.log("Updated Post:", updatedPost);
 
         // Delete the created post

@@ -23,7 +23,8 @@ describe("SampleSdk", () => {
         expect(RestClient.postExpectJSON).toHaveBeenCalledWith(
             mockSession,
             SampleSdk.POSTS_URI,
-            newPost
+            [],
+            JSON.stringify(newPost)
         );
     });
 
@@ -38,8 +39,8 @@ describe("SampleSdk", () => {
         expect(RestClient.putExpectJSON).toHaveBeenCalledWith(
             mockSession,
             `${SampleSdk.POSTS_URI}/1`,
-            updatedPost,
-            ""
+            [],
+            JSON.stringify(updatedPost)
         );
     });
 
