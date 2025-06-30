@@ -25,3 +25,15 @@ Demonstrates adding support for a new profile type to the USS tree in Zowe Explo
 ## vue-webview-sample
 
 Demonstrates the use of the `WebView` class from Zowe Explorer API to create a webview panel, powered by the Vite bundler and Vue JavaScript framework.
+
+---
+
+## local-storage-sample
+
+Demonstrates accessing local storage using the `LocalStorageAccess` facility, exposed through Zowe Explorer's extender API.
+
+---
+
+## extended-attribute-sample
+
+Demonstrates providing additional attributes from extenders on data sets
