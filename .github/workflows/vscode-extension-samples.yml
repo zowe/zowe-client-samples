@@ -24,6 +24,7 @@ jobs:
           - uss-profile-sample
           - vue-webview-sample
           - local-storage-sample
+          - extended-attribute-sample
 
     steps:
       - name: Checkout
