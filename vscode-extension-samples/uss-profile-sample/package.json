@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@zf-test/sample-plugin-for-zowe-cli": "file:../../../zowe-cli-sample-plugin",
-    "@zowe/zowe-explorer-api": "^3.0.0",
+    "@zowe/zowe-explorer-api": "file:../../../ze/packages/zowe-explorer-api",
     "ssh2-sftp-client": "^9.1.0"
   },
   "devDependencies": {

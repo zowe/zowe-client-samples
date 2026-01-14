@@ -13,23 +13,19 @@ export async function activate(context: vscode.ExtensionContext) {
     const disposable = vscode.commands.registerCommand("menu-item-sample.showNodeContext", async () => {
         vscode.window.showInformationMessage("Hello World");
     
-        const zoweExplorerApi = ZoweVsCodeExtension.getZoweExplorerApi();
-        if (zoweExplorerApi != null) {
-            // zoweExplorerApi.registerUssApi(new SshUssApi());
-            await zoweExplorerApi.getExplorerExtenderApi().initForZowe("sample", [ProfileConstants.SAMPLE_PROFILE_SCHEMA]);
-            await zoweExplorerApi.getExplorerExtenderApi().reloadProfiles("sample");
-        } else {
-            vscode.window.showErrorMessage("Could not access Zowe Explorer API. Please check that the latest version of Zowe Explorer is installed.");
-        }
+        const zoweExplorerApi = ZoweVsCodeExtension.getZoweExplorerApi()?.getExplorerExtenderApi();
+        const schema = [ProfileConstants.SAMPLE_PROFILE_SCHEMA];
 
-        const updatedProfile = await ZoweVsCodeExtension.updateCredentials(
-            {
-                sessionName: "sample",
-                rePrompt: true,
-                passwordInputBoxOptions: { value: "" }
-            },
-            ZoweVsCodeExtension.getZoweExplorerApi("3.3.1")
-        );
+        await zoweExplorerApi?.initForZowe("sample", schema);
+        await zoweExplorerApi?.reloadProfiles("sample");
+
+        const zeApiRegister = ZoweVsCodeExtension.getZoweExplorerApi("3.3.1");
+        const updateCredentialsOptions = {
+            sessionName: "sample",
+            rePrompt: true,
+            passwordInputBoxOptions: { value: "" }
+        };
+        const updatedProfile = await ZoweVsCodeExtension.updateCredentials(updateCredentialsOptions, zeApiRegister);
 
         console.log(JSON.stringify(updatedProfile, null, 2));
     });
