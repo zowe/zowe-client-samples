@@ -18,8 +18,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "uss-profile-sample.helloWorld",
-        "title": "Hello World"
+        "command": "menu-item-sample.showNodeContext",
+        "title": "Show Node Context"
       }
     ]
   },
@@ -33,17 +33,18 @@
     "watch": "tsc -watch -p ./"
   },
   "dependencies": {
+    "@zf-test/sample-plugin-for-zowe-cli": "file:../../../zowe-cli-sample-plugin",
     "@zowe/zowe-explorer-api": "^3.0.0",
     "ssh2-sftp-client": "^9.1.0"
   },
   "devDependencies": {
-    "@types/node": "^18.19.14",
+    "@types/node": "^22.19.6",
     "@types/ssh2-sftp-client": "^9.0.0",
     "@types/vscode": "^1.53.2",
-    "@typescript-eslint/eslint-plugin": "^5.42.0",
-    "@typescript-eslint/parser": "^5.42.0",
-    "eslint": "^8.26.0",
-    "typescript": "^5.1.3"
+    "@typescript-eslint/eslint-plugin": "^8.27.0",
+    "@typescript-eslint/parser": "^8.27.0",
+    "eslint": "^9.23.0",
+    "typescript": "^5.8.2"
   },
   "peerDependencies": {
     "@zowe/zos-files-for-zowe-sdk": "^8.0.0",
