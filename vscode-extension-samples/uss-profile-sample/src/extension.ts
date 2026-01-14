@@ -17,7 +17,9 @@ export async function activate(context: vscode.ExtensionContext) {
         const schema = [ProfileConstants.SAMPLE_PROFILE_SCHEMA];
 
         await zoweExplorerApi?.initForZowe("sample", schema);
-        await zoweExplorerApi?.reloadProfiles("sample");
+        // await zoweExplorerApi?.reloadProfiles("sample");
+        zoweExplorerApi?.getProfilesCache().registerCustomProfilesType("sample");
+        await zoweExplorerApi?.getProfilesCache().refresh();
 
         const zeApiRegister = ZoweVsCodeExtension.getZoweExplorerApi("3.3.1");
         const updateCredentialsOptions = {
