@@ -23,9 +23,6 @@
       }
     ]
   },
-  "extensionDependencies": [
-    "Zowe.vscode-extension-for-zowe"
-  ],
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
